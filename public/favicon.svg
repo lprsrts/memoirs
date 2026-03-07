@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Envelope body -->
+  <rect x="2" y="6" width="28" height="20" rx="1.5" fill="#1c1a17"/>
+  <!-- V-fold (flap line) -->
+  <path d="M2 6 L16 18 L30 6" stroke="#faf9f6" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
+  <!-- Bottom fold lines -->
+  <line x1="2" y1="26" x2="12.5" y2="17" stroke="#faf9f6" stroke-width="0.8" opacity="0.55"/>
+  <line x1="30" y1="26" x2="19.5" y2="17" stroke="#faf9f6" stroke-width="0.8" opacity="0.55"/>
+  <!-- Letter peeking out the top -->
+  <rect x="10" y="2" width="12" height="8" rx="0.5" fill="#faf9f6" opacity="0.9"/>
+</svg>
