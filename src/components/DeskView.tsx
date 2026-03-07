@@ -21,12 +21,9 @@ export default function DeskView({ posts, isAdmin }: Props) {
   };
 
   const date = selected
-    ? new Date(selected.created_at).toLocaleDateString("en-US", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
+    ? new Date(
+        selected.post_date ? selected.post_date + "T12:00:00" : selected.created_at
+      ).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
     : "";
 
   return (
@@ -148,23 +145,22 @@ export default function DeskView({ posts, isAdmin }: Props) {
               transition={{ duration: 0.35, ease: "easeInOut" }}
               style={{ padding: "60px 72px", maxWidth: "780px" }}
             >
-              <button
-                onClick={() => setSelected(null)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: "var(--fg-muted)",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
-                  cursor: "pointer",
-                  letterSpacing: "1px",
-                  marginBottom: "44px",
-                  padding: 0,
-                  display: "block",
-                }}
-              >
-                &larr; close
-              </button>
+              <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "44px" }}>
+                <button
+                  onClick={() => setSelected(null)}
+                  style={{ background: "none", border: "none", color: "var(--fg-muted)", fontFamily: "var(--font-mono)", fontSize: "11px", cursor: "pointer", letterSpacing: "1px", padding: 0 }}
+                >
+                  &larr; close
+                </button>
+                {isAdmin && (
+                  <Link
+                    href={`/write?id=${selected.id}`}
+                    style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "1px", color: "var(--fg-muted)", textDecoration: "none", border: "1px solid var(--border)", padding: "3px 8px" }}
+                  >
+                    [ EDIT ]
+                  </Link>
+                )}
+              </div>
 
               <p
                 style={{

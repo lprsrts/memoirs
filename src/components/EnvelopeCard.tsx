@@ -40,11 +40,9 @@ export default function EnvelopeCard({
   const [hovered, setHovered] = useState(false);
   const isOpen = hovered || isSelected;
 
-  const date = new Date(post.created_at).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  const date = new Date(
+    post.post_date ? post.post_date + "T12:00:00" : post.created_at
+  ).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 
   return (
     <motion.div
