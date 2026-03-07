@@ -187,30 +187,6 @@ export default function DeskView({ posts, isAdmin }: Props) {
               </h1>
 
               <MarkdownRenderer content={selected.content} />
-
-              {selected.image_urls?.length > 0 && (
-                <div
-                  style={{
-                    marginTop: "36px",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "16px",
-                  }}
-                >
-                  {selected.image_urls.map((url, i) => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      key={i}
-                      src={url}
-                      alt={`Image ${i + 1}`}
-                      style={{
-                        maxWidth: "100%",
-                        border: "1px solid var(--border)",
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
             </motion.div>
           ) : (
             <motion.div
