@@ -1,0 +1,189 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+/* ── Theme tokens ── */
+:root {
+  --bg: #faf9f6;
+  --bg-card: #f5f0e8;
+  --bg-card-edge: #ede6d6;
+  --fg: #1c1a17;
+  --fg-muted: #7a6e5f;
+  --border: #c8b898;
+  --shadow: rgba(60, 40, 10, 0.14);
+  --accent: #7a5c1e;
+  --sidebar-bg: #f0ece4;
+  --font-body: Georgia, "Times New Roman", serif;
+  --font-mono: "Courier New", Courier, monospace;
+}
+
+[data-theme="dark"] {
+  --bg: #000000;
+  --bg-card: #050505;
+  --bg-card-edge: #0d0d0d;
+  --fg: #cccccc;
+  --fg-muted: #555555;
+  --border: #222222;
+  --shadow: rgba(0, 255, 65, 0.06);
+  --accent: #00ff41;
+  --sidebar-bg: #000000;
+  --font-body: "Courier New", Courier, monospace;
+  --font-mono: "Courier New", Courier, monospace;
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  transition: background 0.25s ease, color 0.25s ease;
+  overflow: hidden;
+}
+
+/* ── Letter card ── */
+.letter-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 185px;
+  height: 252px;
+  margin-left: -92px;
+  margin-top: -126px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 18px 16px 14px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow:
+    2px 4px 12px var(--shadow),
+    1px 2px 4px rgba(0, 0, 0, 0.08);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+[data-theme="dark"] .letter-card {
+  box-shadow:
+    0 0 16px rgba(0, 255, 65, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* fold line at top */
+.letter-card::before {
+  content: "";
+  position: absolute;
+  top: 38px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+  opacity: 0.5;
+}
+
+.letter-card-date {
+  font-size: 10.5px;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.4px;
+}
+
+.letter-card-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--fg);
+  line-height: 1.35;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.letter-card-preview {
+  font-size: 11px;
+  color: var(--fg-muted);
+  line-height: 1.55;
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+/* ── Markdown / Prose ── */
+.prose {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--fg);
+  max-width: 70ch;
+}
+
+.prose h1 { font-size: 1.8em; margin: 1.4em 0 0.5em; }
+.prose h2 { font-size: 1.4em; margin: 1.3em 0 0.4em; }
+.prose h3 { font-size: 1.15em; margin: 1.2em 0 0.4em; }
+
+.prose p { margin: 0.9em 0; }
+
+.prose a { color: var(--accent); text-decoration: underline; }
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: rgba(128, 128, 128, 0.12);
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.prose pre {
+  background: rgba(128, 128, 128, 0.08);
+  border-left: 3px solid var(--border);
+  padding: 1em 1.2em;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.prose pre code { background: none; padding: 0; }
+
+.prose blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1em;
+  color: var(--fg-muted);
+  font-style: italic;
+  margin: 1em 0;
+}
+
+.prose img {
+  max-width: 100%;
+  border: 1px solid var(--border);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.5em;
+  margin: 0.8em 0;
+}
+
+.prose li { margin: 0.25em 0; }
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+/* KaTeX display blocks */
+.prose .math-display {
+  overflow-x: auto;
+  margin: 1.2em 0;
+}
