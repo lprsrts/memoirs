@@ -9,7 +9,7 @@ async function getPosts(): Promise<Post[]> {
   const { data, error } = await supabase
     .from("posts")
     .select("*")
-    .order("created_at", { ascending: false });
+    .order("post_date", { ascending: false });
   if (error) return [];
   return data as Post[];
 }
